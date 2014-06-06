@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AxaFailProof.Models.Comment>
+@{
+    ViewBag.Title = "Comments";
+}
+<div class="panel-header">
+    <h3>Comment List</h3>
+</div>
+
+<div class="panel-body">
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>
+            StoryID
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Comments
+        </th>
+        <th>
+            DateCreated
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    var image = "";
+    if (item.Status == true)
+    {
+        image = "~/Areas/Admin/Content/images/accept.png";
+    }
+    else
+    {
+        image = "~/Areas/Admin/Content/images/cross.png";
+    }       
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StoryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+            <td align="right" height="25" style="padding-left:5px;" nowrap="nowrap">
+            &nbsp;<a onclick="deleteme('@Url.Action("DeleteConfirmed", "Comments", new { id = item.CommentID })')" style="cursor:pointer;"><img src="@Url.Content("~/Areas/Admin/Content/images/delete.png")" width="16" title="Delete" alt="Delete" height="16" align="absmiddle" border="0"/></a> 
+            &nbsp;<a href="@Url.Action("Status", "Comments", new { id = item.CommentID })"><img src="@Url.Content(@image)" width="16" title="Status" alt="Status" height="16" align="absmiddle" border="0"/></a>
+            &nbsp;&nbsp; 
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+</div>
+<div class="clearboth"></div>
+<div class="panel-footer"></div>

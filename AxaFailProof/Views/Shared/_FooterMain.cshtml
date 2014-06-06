@@ -1,0 +1,24 @@
+﻿<!-- strip with buttons -->
+<button class="toggle-btn">X</button>
+<section id="stripwithbtns">
+  <div class="container"><!-- container -->
+    <div class="row-fluid"><!-- row-fluid -->
+      <div class="row-fluid"><!-- row-fluid --> 
+      @Html.Raw(Model.Mushroom3.Body)
+      </div><!-- end -->
+    </div><!-- end -->
+  </div><!-- end -->
+</section><!-- end -->
+<!-- footer -->
+<footer id="footer">
+</footer><!-- end -->
+@Html.Action("CopyRight", "Home")
+<script type="text/javascript">
+    $(window).scroll(function () {
+        if ($(this).scrollTop()) {
+            $('#bluestrip_floating').fadeIn();
+        } else {
+            $('#bluestrip_floating').fadeOut();
+        }
+    });
+</script>

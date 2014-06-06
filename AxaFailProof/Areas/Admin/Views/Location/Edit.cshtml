@@ -1,0 +1,62 @@
+﻿@model AxaFailProof.Models.Location
+@{
+    ViewBag.Title = "Edit Location";
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="panel-header">
+    <h3>Location : Edit </h3>
+</div>
+@using (Html.BeginForm("Edit", "Location", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="panel-body">
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model=>model.LocationID)
+    @Html.HiddenFor(model=>model.Status)
+    @Html.HiddenFor(model=>model.DateCreated)
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label">@Html.LabelFor(model => model.Event) Title</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Event, new { @class = "input-text", style = "width:320px;" })<br />
+                @Html.ValidationMessageFor(model => model.Event)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Location</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Location1, new { @class = "input-text", style = "width:320px;" })<br />
+                @Html.ValidationMessageFor(model => model.Location1)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Date</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.EventDate, new { @class = "input-text", style = "width:320px;" })<br />
+                @Html.ValidationMessageFor(model => model.EventDate)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Time</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.EventTime, new { @class = "input-text", style = "width:320px;" })<br />
+                @Html.ValidationMessageFor(model => model.EventTime)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Description</label>
+            <div class="controls">
+                @Html.TextAreaFor(model => model.EventDescription, new { @class = "input-text", style = "width:520px; height:100px;" })<br />
+                @Html.ValidationMessageFor(model => model.EventDescription)
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="panel-footer">
+    <div class="panel-button">
+        <input type="button" class="btn-submit panel-button-right" value="Back to List" onclick="location.href='@Url.Action("Index")';" />
+        <input type="submit" class="btn-submit panel-button-right" value="Save" />
+        <div class="clearboth"></div>
+    </div>
+</div>
+}

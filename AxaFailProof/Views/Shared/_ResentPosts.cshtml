@@ -1,0 +1,24 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+<div class="widget widget_meta widget_archive">
+<h3>Recent posts</h3>
+<ul >
+    @foreach (var item in Model.ResentPost)
+    {
+        DateTime commentdt = DateTime.Parse(item.DateCreated.ToString()); 
+                        
+    <li>
+    @{
+        if (item.TopicID == 11)
+        {
+            <a class="" href="@Url.Action("HealthDetail", "Home", new { id = item.StoryID, title = item.Title.Replace(" ", "-") })">@item.Title</a>
+        }
+        else
+        { 
+            <a class="" href="@Url.Action("Story", "Home", new { id = item.StoryID, title = item.Title.Replace(" ", "-") })">@item.Title</a>
+        }
+    }
+    <p class="date">@commentdt.ToString("MMM dd, yyyy") at @commentdt.ToString("hh:mm tt")</p>
+    </li>
+    }
+</ul>
+</div>

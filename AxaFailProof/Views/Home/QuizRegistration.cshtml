@@ -1,0 +1,183 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<script src="@Url.Content("~/Scripts/jquery.maskedinput.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    function checkemail(email) {
+        filter = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (filter.test(email)) {
+            return true;
+        }
+        else
+        { return false; }
+    }
+
+    function isValidUSPhoneFormat(elementValue) {
+        var phoneNumberPattern = /^[(]{0,1}[0-9]{4}[)]{0,1}[-\s.]{0,1}[0-9]{7}$/;
+        if (phoneNumberPattern.test(elementValue) == false) {
+            var phoneNumberPattern = /^(\()?\d{3}(\))?(.|\s)?\d{3}(.|\s)\d{4}$/;
+            return phoneNumberPattern.test(elementValue);
+        }
+        return phoneNumberPattern.test(elementValue);
+    }
+
+    function checkdate(input) {
+        var validformat = /^\d{4}\-\d{2}\-\d{2}$/ //Basic check for format validity
+        var returnval = false
+        if (!validformat.test(input))
+            $("#Quiz_BirthDate_Error").html("Invalid Date Format. Please correct and submit again.");
+        else { //Detailed check for valid date ranges
+            var yearfield = input.split("-")[0]
+            var monthfield = input.split("-")[1]
+            var dayfield = input.split("-")[2]
+            var dayobj = new Date(yearfield, monthfield - 1, dayfield)
+            if ((dayobj.getMonth() + 1 != monthfield) || (dayobj.getDate() != dayfield) || (dayobj.getFullYear() != yearfield))
+                $("#Quiz_BirthDate_Error").html("Invalid Year, Month, or Day, range detected. Please correct and submit again.");
+            else
+                returnval = true
+        }
+        if (returnval == false) select()
+        return returnval
+    }
+
+    function validateForm() {
+        var firstname = $("#Quiz_FirstName").val();
+        var lastname = $("#Quiz_LastName").val();
+        var locationcity = $("#Quiz_LocationCity").val();
+        var contact = $("#Quiz_ContactNumber").val();
+        var email = $("#Quiz_Email").val();
+        var bday = $("#Quiz_BirthDate").val();
+
+        if (!firstname) {
+            $("#Quiz_FirstName_Error").html("Please enter your first name.");
+        } else {
+            $("#Quiz_FirstName_Error").html("");
+        }
+        if (!locationcity) {
+            $("#Quiz_LocationCity_Error").html("Please enter your location or city.");
+        } else {
+            $("#Quiz_LocationCity_Error").html("");
+        }
+        if (!lastname) {
+            $("#Quiz_LastName_Error").html("Please enter your last name.");
+        } else {
+            $("#Quiz_LastName_Error").html("");
+        }
+        if (!contact) {
+            $("#Quiz_ContactNumber_Error").html("Please enter your contact number.");
+        } else {
+            $("#Quiz_ContactNumber_Error").html("");
+        }
+        if (!email) {
+            $("#Quiz_Email_Error").html("Please enter your email address.");
+        } else {
+            $("#Quiz_Email_Error").html("");
+        }
+        if (!bday) {
+            $("#Quiz_BirthDate_Error").html("Please enter your birth date.");
+        } else {
+            $("#Quiz_BirthDate_Error").html("");
+        }
+        if (checkemail(email) == false) {
+            $("#Quiz_Email_Error").html("Please enter a valid email address format.");
+            email = null;
+        } else {
+            $("#Quiz_Email_Error").html("");
+        }
+        if (isValidUSPhoneFormat(contact) == false) {
+            $("#Quiz_ContactNumber_Error").html("Please enter valid contact number.");
+        } else {
+            $("#Quiz_ContactNumber_Error").html("");
+        }
+        if (checkdate(bday) == false) {
+            bday = null;
+        }
+        if (firstname && locationcity && lastname && contact && email && bday) {
+            $("#frmEvent").submit();
+        }
+    }
+
+    jQuery(function ($) {
+        $("#Quiz_ContactNumber").mask("9999-9999999");
+        $("#Quiz_BirthDate").mask("9999-99-99");
+    });
+</script> 
+<!-- END REVOLUTION SLIDER -->
+<section class="section">
+  <div class="container">
+    <div class="row-fluid">
+      <div class="inner-content portfolio-items pocketevent active first-row span12">
+        <div class="post-info-container">
+          <p class="failproof-header4">Register to view and share your results.</p>
+        </div>
+        <div class="post-info-container">
+          <div class="row-fluid">
+            <div class="stunning_text">
+              <div class="big-title  extra-large-text"></div>
+            </div>
+            <div class="wpcf7" id="wpcf7-f2370-p20-o1">
+                <div class="comment-form">
+                    @using (Html.BeginForm("QuizRegistration", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmEvent" }))
+                    {
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.Quiz.QuizID)
+                        @Html.HiddenFor(model => model.Quiz.Score)
+                        @Html.HiddenFor(model => model.Quiz.DateCreated)
+                        @Html.HiddenFor(model => model.Quiz.Status)
+                      <div class="row-fluid">
+                        <div class="span4">
+                          <div class="control-wrap"> <span class="icon"><i class="icon-fixed-user"></i></span>
+                            @Html.TextBoxFor(model => model.Quiz.FirstName, new { placeholder = "First Name" })
+                            <span id="Quiz_FirstName_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="control-wrap"> <span class="icon"><i class="icon-fixed-user"></i></span>
+                            @Html.TextBoxFor(model => model.Quiz.LastName, new { placeholder = "Last Name" })
+                            <span id="Quiz_LastName_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="control-wrap"> <span class="icon"><i class="icon-fixed-world"></i></span>
+                            @Html.TextBoxFor(model => model.Quiz.LocationCity, new { placeholder = "Location or City" })
+                            <span id="Quiz_LocationCity_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="control-wrap"> <span class="icon"><i class="icon-fixed-phone"></i></span>
+                            @Html.TextBoxFor(model => model.Quiz.ContactNumber, new { placeholder = "XXXX-XXXXXXX" })
+                            <span id="Quiz_ContactNumber_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="control-wrap"> <span class="icon"><i class="icon-fixed-mail"></i></span>
+                            @Html.TextBoxFor(model => model.Quiz.Email, new { placeholder = "Email Address" })
+                            <span id="Quiz_Email_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="control-wrap"> <span class="icon"><i class="icon-fixed-user"></i></span>
+                            <input data-val="true" data-val-required="The BirthDate field is required." id="Quiz_BirthDate" name="Quiz.BirthDate" placeholder="yyyy-mm-dd" type="text" value="" />
+                            <span id="Quiz_BirthDate_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <!--/row-->
+                    }
+                  <div class="post-info-container">
+                    <table width="429" border="0" cellpadding="0" cellspacing="0" class="joinapocketevent_text1">
+                        <tr>
+                        <td height="45"><input name="submit" type="submit" id="submit" class="button.blue img" tabindex="5" value="Submit" onclick="validateForm();" /></td>
+                        </tr>
+                    </table>                    
+                  </div>
+                </div>
+            </div>
+            <div class="gap" style="height:50px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

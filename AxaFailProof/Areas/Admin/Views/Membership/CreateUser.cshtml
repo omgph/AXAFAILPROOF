@@ -1,0 +1,147 @@
+@model AxaFailProof.Areas.Admin.ViewModels.RegisterViewModel
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Create User";
+}
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="panel-header">
+  <h3>Create User</h3>
+</div>
+@using (Html.BeginForm())
+{
+<div class="panel-body">
+    <div id="breadcrumb">
+        @Html.ActionLink("Dashboard", "Index", "Dashboard") > 
+        @Html.ActionLink("Manage Users", "Index", "Membership") > 
+        Create User
+    </div>
+    <ul>
+        <li>To be a minimum of @Membership.MinRequiredPasswordLength characters in length.</li>
+        @if (Membership.MinRequiredNonAlphanumericCharacters > 0)
+        {
+            <li>To have a minimum of @Membership.MinRequiredNonAlphanumericCharacters non-alpha numeric characters included, such as &quot;<span style="font-family: Courier New; font-size: 16px;">(){}-_*&^%$#@@!</span>&quot;.</li>
+        }
+    </ul>
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>Enter User Credentials</legend>
+            <div class="control-group">
+                <label class="control-label">@Html.LabelFor(model => model.UserName)</label>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "input-text", style = "width:220px;" })
+                    <span class="system negative" id="username-message">@Html.ValidationMessageFor(model => model.UserName)</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">@Html.LabelFor(model => model.Email)</label>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "input-text", style = "width:220px;" })
+                    <span class="system negative" id="username-message">@Html.ValidationMessageFor(model => model.Email)</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">@Html.LabelFor(model => model.Password)</label>
+                <div class="controls">
+                    @Html.PasswordFor(model => model.Password, new { @class = "input-text", style = "width:220px;" })
+                    <span class="system negative" id="username-message">@Html.ValidationMessageFor(model => model.Password)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">@Html.LabelFor(model => model.ConfirmPassword)</label>
+                <div class="controls">
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "input-text", style = "width:220px;" })
+                    <span class="system negative" id="username-message">@Html.ValidationMessageFor(model => model.ConfirmPassword)</span>
+                </div>
+            </div>
+
+
+            @if (Model.RequireSecretQuestionAndAnswer)
+            {
+            <div class="control-group">
+                <label class="control-label">@Html.LabelFor(model => model.SecretQuestion)</label>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.SecretQuestion, new { @class = "input-text", style = "width:220px;" })
+                    <span class="system negative" id="username-message">@Html.ValidationMessageFor(model => model.SecretQuestion)</span>
+                </div>
+            </div>            
+            <div class="control-group">
+                <label class="control-label">@Html.LabelFor(model => model.SecretAnswer)</label>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.SecretAnswer, new { @class = "input-text", style = "width:220px;" })
+                    <span class="system negative" id="username-message">@Html.ValidationMessageFor(model => model.SecretAnswer)</span>
+                </div>
+            </div> 
+            }
+            <div class="control-group">
+                <label class="control-label">@Html.LabelFor(model => model.Approve)</label>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Approve, new { @class = "input-text"})
+                    <span class="system negative" id="username-message">@Html.ValidationMessageFor(model => model.Approve)</span>
+                </div>
+            </div> 
+
+            @Html.HiddenFor(model => model.RequireSecretQuestionAndAnswer)
+
+        </fieldset>
+</div>
+<div class="panel-footer"> 
+    <div class="panel-button">
+        <input type="button" class="btn-submit panel-button-right" value="Back to List" onclick="location.href='@Url.Action("Index")';" />
+        <input type="submit" class="btn-submit panel-button-right" value="Create" />
+        <div class="clearboth"></div>
+    </div>
+
+</div>    
+}
+
+<script type="text/javascript">
+
+    $(function () {
+
+        var msg = $("#username-message");
+        var btn = $("input[type='submit']");
+
+        $("#UserName").focus();
+
+        $("#UserName").blur(function () {
+
+            var username = $(this).val();
+
+            if (username.length == 0) {
+                alert("No username.");
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("CheckForUniqueUser", "Membership")',
+                dataType: 'json',
+                type: 'GET',
+                data: { userName: username },
+                success: OnCheckForUniqueUserSuccess,
+                error: OnCheckForUniqueUserError
+            });
+        });
+
+        function OnCheckForUniqueUserSuccess(data) {
+            if (data.Exists) {
+                msg.text("This username already exists.  Please enter a new one.");
+                btn.attr("disabled", "disabled");
+            } else {
+                msg.text("");
+                btn.removeAttr("disabled");
+            }
+        }
+
+        function OnCheckForUniqueUserError(xhr, status, error) {
+            msg.text("There was an error checking uniqueness.");
+        }
+    });
+
+</script>

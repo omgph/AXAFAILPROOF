@@ -1,0 +1,60 @@
+@model Admin.ViewModels.LogOnViewModel
+@using Microsoft.Web.Helpers
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout2.cshtml";
+}
+<div class="offset1 span1">
+    <div class="page-header">
+    <h1>Sign In</h1>
+    </div>
+</div>
+@using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+@Html.ValidationSummary(true)
+<div class="span1 offset1">
+    <div class="span2">
+    <fieldset>
+        <legend>User Account</legend>
+        <div class="control-group">
+        <label class="control-label">@Html.LabelFor(model => model.UserName)</label>
+        <div class="controls">
+            @Html.TextBoxFor(model => model.UserName, new { @class = "input-text", style = "width:220px;" })<br />
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+        </div>
+        <div class="control-group">
+        <label class="control-label"> @Html.LabelFor(model => model.Password)</label>
+        <div class="controls">
+            @Html.PasswordFor(model => model.Password, new { @class = "input-text", style = "width:220px" })<br />
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        </div>
+    </fieldset>
+    </div>
+    <div class="span3 offset1">
+    <fieldset>
+        <legend>Options</legend>
+        <div class="control-group">
+        <label class="checkbox">
+            @Html.EditorFor(model => model.RememberMe)
+            @Html.ValidationMessageFor(model => model.RememberMe)
+            <span>Remain logged in to website.</span> 
+            <!--<br /><br /><span>Forgot Password?<a href="ForgotPassword">Click Here</a></span>-->
+            </label>
+        </div>
+    </fieldset>
+    </div>
+</div>
+<div class="clearboth"></div>
+<div class="span1 offset1">
+    <div class="action">
+        <input type="submit" class="btn-submit" id="submit" name="submit" value="Sign In >" />
+    </div>
+</div>
+}<!--end login form-->
+
+ <script type="text/javascript">
+      $(function () {
+          $("#UserName").focus();
+      });
+</script>

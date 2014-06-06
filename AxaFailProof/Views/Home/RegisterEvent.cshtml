@@ -1,0 +1,105 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+    function submitevent() {
+        $("#FrmEvent").submit();
+//        var location = $("#LocationID").val();
+//        // check date limit
+//        if (location) {
+//            var url = "/EventCheck";
+//            $.post(url, { locationid: location }, function (data) {
+//                if (data == 20) {
+//                    $("#ErrorDate").html('Sorry only 20pax can registered. Please choose another location/date.');
+//                } else {
+//                    $("#FrmEvent").submit();
+//                }
+//            });
+//        }
+
+    }
+
+    function showEventDetail() {
+        var location = $("#LocationID").val();
+        var url = "/EventDetail";
+        if (location == 0) {
+            $("#ErrorLocationID").html('Please choose your preferred date and location.');
+        } else {
+            $("#ErrorLocationID").html('');
+        }
+        if (location) {
+            $.post(url, { locationid: location }, function (data) {
+                if (data) {
+                    $("#event_detials").html(data);
+                    $("#detail_holder").show();
+                }
+            });
+        }
+    }
+</script>
+<!-- Section post -->
+<section class="section">
+  <div class="container">
+    <div class="row-fluid">
+      <div class="portfolio">
+        <ul  class="portfolio-items portfolio-style1 filterable-items row-fluid style2" data-columns="4">
+          
+          <li class="portfolio-item pocketevent first-row span12">
+            <div class="inner-content">
+                 
+            <div class="post-info-container">
+            <p class="failproof-header4">Register for an Event</p>
+            </div>
+            
+            <div class="row-fluid style2">
+                <div class="span6 testimonial-grid-item">
+                  <div class="inner-content">
+                    <div class="joinapocketevent_text5">CHOOSE:<br>
+                      <span class="joinapocketevent_text4">Choose your preffered date and location?</span> <br><br>
+                        @using (Html.BeginForm("RegisterEvent", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "FrmEvent" }))
+                        {
+                          @Html.ValidationSummary(true)
+                          <select name="LocationID" id="LocationID" style="width:350px; margin-bottom:5px;">
+                            <option value="0">Select Date and Location</option>
+                            @foreach (var item in Model.Locations)
+                            { 
+                                <option value="@item.LocationID">@item.EventDate (@item.Location1)</option>
+                            }
+                          </select>
+                          <span id="ErrorLocationID" data-valmsg-replace="true" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                        }
+                      <input name="submit" type="submit" id="submit" class="button.blue img" tabindex="5" value="Search" onclick="showEventDetail();" style="cursor:pointer;"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="span6 testimonial-grid-item" style="display:none;" id="detail_holder">
+                    <div class="inner-content">
+                        <div class="joinapocketevent_text5">
+                            <div id="event_detials"></div>
+                            <br ><input name="submit" type="submit" id="submit" class="button.blue img" tabindex="5" value="Next" style="margin-top:-10px; cursor:pointer;" onclick="submitevent();"  />
+                        </div>
+                    </div>
+                </div>
+        </div>
+      </div>
+     		<div class="gap" style="height:50px"></div>
+	</ul>
+      </div>
+      
+    </div>
+  </div>
+</section>
+<script>
+
+    $("#datepicker").datepicker(
+        {
+            onSelect: function (date) {
+                $("#EventDate").val(date);
+            },
+            dateFormat: "yy-mm-dd"
+        }
+    );
+</script>

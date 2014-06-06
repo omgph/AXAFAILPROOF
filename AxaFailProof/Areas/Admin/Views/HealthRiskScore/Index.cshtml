@@ -1,0 +1,92 @@
+﻿@model IEnumerable<AxaFailProof.Models.HealthRiskScore>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout3.cshtml";
+    ViewBag.Title = "Health Risk Score";
+}
+<div class="panel-header">
+    <h3>Health Risk Score</h3>
+</div>
+
+<div class="panel-body">
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>
+            Email
+        </th>
+        <th>
+            Gender
+        </th>
+        <th>
+            Smoker
+        </th>
+        <th>
+            Pounds
+        </th>
+        <th>
+            Feet
+        </th>
+        <th>
+            Inches
+        </th>
+        <th>
+            Parents Illness
+        </th>
+        <th>
+            Your Illness
+        </th>
+        <th>
+            Income
+        </th>
+        <th>
+            Savings
+        </th>
+        <th></th>
+    </tr>
+       </thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Smoker)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pounds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Feet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inches)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParentsIllness)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YouIllness)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Income)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Savings)
+        </td>
+         <td align="right" height="25" style="padding-left:5px;" nowrap="nowrap">
+            &nbsp;<a onclick="deleteme('@Url.Action("DeleteConfirmed", "HealthRiskScore", new { id = item.ID })')" style="cursor:pointer;"><img src="@Url.Content("~/Areas/Admin/Content/images/delete.png")" width="16" title="Delete" alt="Delete" height="16" align="absmiddle" border="0"/></a> 
+            &nbsp;&nbsp; 
+        </td>
+
+    </tr>
+}
+</tbody>
+</table>
+</div>
+<div class="clearboth"></div>
+<div class="panel-footer"></div>

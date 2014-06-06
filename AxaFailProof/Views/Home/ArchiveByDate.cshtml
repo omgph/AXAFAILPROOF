@@ -1,0 +1,67 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml"; 
+}
+<section id="titlebar" class="titlebar">
+  <div class="container">
+    <div class="row-fluid">
+      <h1 class="">Stories</h1>
+    </div>
+  </div>
+</section>
+
+<!-- section post -->
+<section class="section">
+<div class="container">
+  <div class="row-fluid">
+    <div class="portfolio-tabs clearfix"> </div>
+    <div class="portfolio">
+      <ul  class="portfolio-items portfolio-style1 filterable-items three-columns row-fluid " data-columns="3">
+        @foreach (var item in Model.Stories)
+        {
+            string teaser = "";
+            teaser = System.Text.RegularExpressions.Regex.Replace(item.Body.Replace("&nbsp;", ""), "<.*?>", string.Empty);
+            if (teaser.Length > 250)
+            {
+                teaser = teaser.Substring(0, 250);
+            }
+            else
+            {
+                teaser = teaser.ToString();
+            }
+
+            DateTime dt = DateTime.Parse(item.DateCreated.ToString());
+        <li class="portfolio-item span4 archive first-row ">
+          <div class="inner-content">
+            <div class="post-grid-item-wrap">
+              <div class="hoverlay"> <a href="@Url.Action("Story", "Home", new { id = item.StoryID })" class="block">
+                <div class="image"><img  src="@Url.Content("~/UserFiles/image_thumb/" + item.Image)" alt="@item.Title" >
+                  <div class="overlay"> <span class="icon"><i class="icon-fixed-plus"></i></span>
+                    <div class="overlay-content"> </div>
+                  </div>
+                </div>
+                <div class="post-text-wrap-container">
+                  <div class="post-text-wrap">
+                    <div class="post-meta">
+                      <h3>@item.Title</h3>
+                      <div class="post-meta-info"><span>@item.Author</span><span class="divider">/</span><span>@dt.ToString("y")</span></div>
+                      <p class="excerpt">@teaser...</p>
+                    </div>
+                  </div>
+                </div>
+                </a>
+                <div class="post-text-bottom">
+                  <div><a href="@Url.Action("Story", "Home", new { id = item.StoryID })" class="readmore">Read More<i class="icon-arrow-right8"></i></a> <a href="#" class="comments-info"><i class="icon-fixed-bubble"></i>@item.CommnetsCount</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="inner-content"></div>
+        </li>
+        }
+
+        
+      </ul>
+    </div>
+  </div>
+</div>

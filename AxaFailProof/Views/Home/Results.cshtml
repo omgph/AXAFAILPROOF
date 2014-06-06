@@ -1,0 +1,53 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+
+}
+<script>
+    function shareApp() {
+        FB.ui(
+  			  {
+  			      method: 'feed',
+  			      name: '@ViewBag.ResultsTitle |  Take The Offbeat Death Quiz!',
+  			      link: 'https://www.facebook.com/EastWestBanker/app_204509076404997',
+  			      picture: 'http://omgph.net/UserFiles/images/@ViewBag.ImageResults',
+  			      caption: '',
+  			      description: 'What a funny way to die! You want to know how you’ll end up six feet under? Take the quiz too!'
+  			  },
+  		function (response) {
+  		    if (response && response.post_id) {
+  		        alert('Post was published.');
+  		    } else {
+  		        alert('Post was not published.');
+  		    }
+  		}
+		);
+    }
+
+    // SHARE TWITTER
+    function shareTW() {
+        var textToTweet = "What a funny way to die! You want to know how you’ll end up six feet under? Take the quiz too! http://omgph.net/";
+        var twtLink = 'http://twitter.com/home?status=' + encodeURIComponent(textToTweet);
+        window.open(twtLink, 'twitterPost');
+    }	
+
+</script>
+<!-- END REVOLUTION SLIDER -->
+<section class="section">
+  <div class="row-fluid">
+    <div class="takethequiz-header">
+      <p class="takethequiz-text3">Offbeat Death Quiz</p>
+      </p>
+      <p class="takethequiz-text4">Find out how you will die based on your lifestyle </p>
+    </div>
+    <div id="takethequiz-content">
+      <div id="quiz-question"> <span class="takethequiz-text7">Your score</span><br>
+        <span class="takethequiz-text6">@Model.Quiz.Score</span><span class="takethequiz-text8"><br>
+        @ViewBag.ResultsTitle</span>
+        <div class="red-line"></div>
+        <p class="takethequiz-text7">@ViewBag.ResultsDescription</p>
+        <a href="/Quiz" style="float:left; margin-right:5px;"><img src="@Url.Content("~/Content/images/btn_retakequiz.png")" class="sociallinks-align" border="0" ></a> <a onclick="shareApp();" style="cursor:pointer; float:left; margin-right:5px;"><img src="@Url.Content("~/Content/images/btn_fb2.png")" class="sociallinks-align" border="0" ></a> <a onclick="shareTW();" style="cursor:pointer; float:left;"><img src="@Url.Content("~/Content/images/btn_twitter2.png")" class="sociallinks-align" border="0" ></a> </div>
+      <div id="quiz-img"><img class="centeredImage" src="/UserFiles/images/@ViewBag.ImageResults" /></div>
+    </div>
+  </div>
+</section>

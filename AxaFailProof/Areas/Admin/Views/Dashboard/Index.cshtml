@@ -1,0 +1,54 @@
+@model Admin.ViewModels.DashboardViewModel
+@{
+    ViewBag.Title = "Manage Users and Roles";
+}
+<div class="panel-header">
+    <h3>Manage Users and Roles</h3>
+</div>
+
+<div class="panel-body">
+    <fieldset>
+        <legend>Manage Users</legend>
+        <p>@Html.ActionLink("Manage Users", "Index", "Membership", new { area = "Admin" }, null)
+            | @Html.ActionLink("Create User", "CreateUser", "Membership", new { area = "Admin" }, null)</p>
+        <table>
+            <tr>
+                <td>
+                    Total Users:
+                </td>
+                <td>@Model.TotalUserCount
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Users Online:
+                </td>
+                <td>@Model.TotalUsersOnlineCount
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+<div class="panel-body">
+    <fieldset>
+        <legend>Manage Roles</legend>
+        <p>@Html.ActionLink("Manage Roles", "Index", "Role", new { area = "Admin" }, null)</p>
+        <table>
+            <tr>
+                <td>
+                    Total Roles:
+                </td>
+                <td>@Model.TotalRolesCount
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+<div class="clearboth"></div>
+<div class="panel-footer"></div>

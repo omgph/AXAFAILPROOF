@@ -1,0 +1,11 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+<div id="archives-2" class="widget widget_meta widget_archive">
+    <h3>Archives</h3>
+    <ul>
+    @foreach (var item in Model.DateArchive)
+    { 
+        DateTime commentdt = DateTime.Parse(item.DateCreated.ToString());
+        <li><a href='/ArchiveByDate/@commentdt.ToString("MM")/@commentdt.ToString("yyyy")' title='@commentdt.ToString("MMM yyyy")'>@commentdt.ToString("MMM yyyy")</a></li>
+    }
+    </ul>
+</div>

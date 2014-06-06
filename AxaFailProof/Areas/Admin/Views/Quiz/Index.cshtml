@@ -1,0 +1,84 @@
+﻿@model IEnumerable<AxaFailProof.Models.Quiz>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout3.cshtml";
+    ViewBag.Title = "Quiz";
+}
+<div class="panel-header">
+    <h3>Quiz</h3>
+</div>
+
+<div class="panel-body">
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>
+            FirstName
+        </th>
+        <th>
+            LastName
+        </th>
+        <th>
+            Location
+        </th>
+        <th>
+            ContactNumber
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Score
+        </th>
+        <th>
+            DateCreated
+        </th>
+        <th></th>
+    </tr>
+       </thead>
+    <tbody>
+@foreach (var item in Model) {
+    var image = "";
+    if (item.Status == true)
+    {
+        image = "~/Areas/Admin/Content/images/accept.png";
+    }
+    else
+    {
+        image = "~/Areas/Admin/Content/images/cross.png";
+    }      
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td align="right" height="25" style="padding-left:5px;" nowrap="nowrap">
+            &nbsp;<a onclick="deleteme('@Url.Action("DeleteConfirmed", "Quiz", new { id = item.QuizID })')" style="cursor:pointer;"><img src="@Url.Content("~/Areas/Admin/Content/images/delete.png")" width="16" title="Delete" alt="Delete" height="16" align="absmiddle" border="0"/></a> 
+            &nbsp;<a href="@Url.Action("Status", "Quiz", new { id = item.QuizID })"><img src="@Url.Content(@image)" width="16" title="Status" alt="Status" height="16" align="absmiddle" border="0"/></a>
+            &nbsp;&nbsp; 
+        </td>
+
+    </tr>
+}
+</tbody>
+</table>
+</div>
+<div class="clearboth"></div>
+<div class="panel-footer"></div>

@@ -1,0 +1,72 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml"; 
+}
+<section id="titlebar" class="titlebar">
+  <div class="container">
+    <div class="row-fluid">
+      <h1 class="">Stories</h1>
+    </div>
+  </div>
+</section>
+
+<!-- section post -->
+<section class="section">
+  <div class="container">
+    <div class="row-fluid">
+      <div class="inner-content">
+        <div class="post post-standard clearfix span9">
+          <div class="post post-full-width-alternate clearfix">
+            <h2>Write your own story</h2>
+            @using (Html.BeginForm("SubmitStory", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.Story.Author)
+                @ViewBag.name
+                <div class="comment-form">
+                    <div class="row-fluid">
+                      <div class="span14">
+                        <div class="control-wrap"> <span class="icon"><i class="icon-fixed-user"></i></span>
+                          @Html.TextBoxFor(model => model.Story.Title, new { size = "22", tabindex = "1", placeholder = "Story Title" })
+                          @Html.ValidationMessageFor(model => model.Story.Title, "", new { style = "color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;" })
+                        </div>
+                      </div>
+                      <div class="span14">
+                        <div class="control-wrap">
+                          @FileUpload.GetHtml(initialNumberOfFiles: 1, allowMoreFilesToBeAdded: false, includeFormTag: false)
+                          @Html.ValidationMessageFor(model => model.Story.Image)
+                        </div>
+                      </div>
+                      <div class="span4"></div>
+                    </div>
+                  </div>
+                  <!--/row-->
+                  <div class="comment-form">
+                    <div class="row-fluid">
+                      <div class="span14">
+                        @Html.TextAreaFor(model => model.Story.Body, new { rows = "10", cols = "58", placeholder = "Your Story" })
+                        @Html.ValidationMessageFor(model => model.Story.Body, "", new { style = "color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;" })
+                      </div>
+                    </div>
+                  </div>
+                  <input name="submit" type="submit" id="submit" class="button" tabindex="5" value="Submit" />
+            }
+          </div>
+        </div>
+        <div class="sidebar span3">
+          <div class="inner-content">
+            <div id="search-2" class="widget widget_meta widget_search">
+            @Html.Action("SearchByTopicForm", "Home")
+            </div>
+            @Html.Action("ArchiveList", "Home")
+            @Html.Action("ResentPosts", "Home")
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+    $("#Story_Author").val(getCookie('username'));
+
+</script>

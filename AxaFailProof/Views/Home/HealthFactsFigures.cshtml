@@ -1,0 +1,104 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+@using PagedList.Mvc; 
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<section id="titlebar" class="titlebar">
+  <div class="container">
+    <div class="row-fluid">
+      <h1 class="">Health Facts & Figures</h1>
+    </div>
+  </div>
+</section>
+
+<!-- section post -->
+<section class="section">
+<div class="container">
+  <div class="row-fluid">
+    <div class="portfolio-tabs clearfix"> </div>
+    <div class="portfolio">
+      <ul  class="portfolio-items portfolio-style1 filterable-items three-columns row-fluid " data-columns="3">
+        <li class="portfolio-item searchbytopic ">
+          <div class="inner-content">
+            <div class="container"></div>
+          </div>
+        </li>
+        <li class="portfolio-item searchbytopic first-row ">
+          <div class="inner-content">
+            <div class="row-fluid">
+              <div  class="content span9">
+                <div class="inner-content">
+                @foreach (var item in Model.SearchResults)
+                {
+                    DateTime dt = DateTime.Parse(item.DateCreated.ToString());
+                    string teaser = "";
+                    teaser = System.Text.RegularExpressions.Regex.Replace(item.Body.Replace("&nbsp;", ""), "<.*?>", string.Empty);
+                    if (teaser.Length > 350)
+                    {
+                        teaser = teaser.Substring(0, 350);
+                    }
+                    else
+                    {
+                        teaser = teaser.ToString();
+                    }
+
+                  <div class="post post-standard clearfix">
+                    <div class="post-left-container">
+                      <div class="post-date-container">
+                        <div class="date"> <span class="day"><span>@dt.ToString("dd")</span></span> <span class="month">@dt.ToString("MMM")</span> </div>
+                      </div>
+                      <div class="post-meta-container">
+                        <div><span class="label">Posted By</span><span><a>@item.Author</a></span></div>
+                        @*<div> <span>Topic</span> <span><a>@item.Topics.Title</a> <span>Tags</span> <a>@item.Tags</a></span> </div>*@
+                      </div>
+                      <div class="post-comment-info"> <a class="commnets" href="#"><i class="icon-fixed-bubble"></i>@item.CommnetsCount</a> </div>
+                    </div>
+                    <div class="post-right-container">
+                      <div class="image hoverlay"><img  src="@Url.Content("~/UserFiles/image_thumb/" + @item.Image)" class="attachment-blog-large wp-post-image" />
+                        @*<div class="overlay"> <a class="icon prettyPhoto" href="@Url.Content("~/UserFiles/images/" + @item.Image)"><i class="icon-fixed-search"></i></a> </div>*@
+                      </div>
+                      <div class="post-info-container">
+                        <h2>@item.Title</h2>
+                        <p>@teaser [...]</p>
+                        <a href="@Url.Action("HealthDetail", "Home", new { id = item.StoryID, title = item.Title.Replace(" ", "-") })" class="readmore"> Read More<i class="icon-arrow-right8"></i> </a> </div>
+                    </div>
+                  </div>
+                }
+                  
+                  <div class="row-fluid page-nav-container">
+                    <div class="span8">
+                      <div class="page-nav">
+                          <div class="pager">
+                            <div id="pagerlist">
+                                @Html.PagedListPager(Model.SearchResults,
+                                       page => Url.Action("HealthFactsFigures", new RouteValueDictionary() {
+                                       { "Page", page }
+                                    }),
+                                    PagedListRenderOptions.PageNumbersOnly)
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="span4">
+                      <div class="page-nav-info">Page @Model.SearchResults.PageNumber of @Model.SearchResults.PageCount</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="sidebar span3">
+                <div class="inner-content">
+                  <div id="search-2" class="widget widget_meta widget_search">
+                    @Html.Action("SearchByTopicForm", "Home")
+                  </div>
+                  @Html.Action("ArchiveList", "Home")
+                  @Html.Action("ResentPosts", "Home")
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>

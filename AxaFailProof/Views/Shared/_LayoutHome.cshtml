@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="copyright" lang="en" content="2013" />
+<meta name="title" content="AXA Philippines - Fail Proof Your Future" property="og:title"/>
+<meta name="description" content="" property="og:description" />
+<meta name="keywords" content="AXA Philippines,Life Insurance,AXA Health Solutions,It Can Happen To You,Health MaX,Health eXentials,Health Insurance,Health Plan,Health Benefits,Best Health Plan,Global Insurance Company,Critical Illness Cover,Daily Hospitalization Income,All In One Plan,All In One Health Plan,Additional Health Coverage,Additional HMO Coverage,Breast Cancer,Cancer,Lung Cancer,Cervical Cancer,Symptoms of Cancer,Health Illness,Stroke Symptoms,Heart Stroke,What Is Stroke,Cancer Chemotherapy,Symptoms Tuberculosis,Pulmonary Tuberculosis,Health Care,Philippine Health Insurance,Health Card" />
+<meta content="http://omgph.net/UserFiles/og_images/axa_og_image.png" property="og:image" />
+
+<title>AXA Philippines - Fail Proof Your Future</title>
+
+<!-- CSS -->
+<link rel="stylesheet" href="@Url.Content("~/Content/css/layout.css")" type="text/css" />
+<link rel='stylesheet' id='rs-settings-css'  href='@Url.Content("~/Content/css/settings.css")' type='text/css' media='all' />
+<link rel='stylesheet' id='rs-captions-css'  href='@Url.Content("~/Content/css/captions.css")' type='text/css' media='all' />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/main.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/shortcodes.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/icons.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/flexslider.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/responsive.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/fonts.css")" type="text/css" />
+
+<!-- JS -->
+<link href='http://fonts.googleapis.com/css?family=Montserrat:700,400' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="@Url.Content("~/Content/js/jquery.js")"></script>
+<script type='text/javascript' src='@Url.Content("~/Content/js/jquery.themepunch.revolution.min.js")'></script>
+<script type="text/javascript" src="@Url.Content("~/Content/js/plugins.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Content/js/caroufred.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Content/js/flexslider.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Content/js/isotope.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Content/js/main.js")"></script>
+<!-- Icon -->
+<link rel="shortcut icon" href="@Url.Content("~/Content/images/ico.png")">
+<script>
+$(document).ready(function(){
+  $("button").on("click", function(){
+    if($(this).text()=="X")
+    {
+        $(this).text("Show");
+    } else {
+        $(this).text("X");
+    }
+    $("#stripwithbtns").toggle(); 
+    return false;
+  });
+});
+</script>
+
+</head>
+<!--[if lte IE 6]><script src="@Url.Content("~/Content/js/ie6/warning.js")"></script><script>window.onload=function(){e("@Url.Content("~/Content/js/ie6/")")}</script><![endif]-->
+<!--[if lte IE 7]><script src="@Url.Content("~/Content/js/ie6/warning.js")"></script><script>window.onload=function(){e("@Url.Content("~/Content/js/ie6/")")}</script><![endif]-->
+<!--[if lte IE 8]><script src="@Url.Content("~/Content/js/ie6/warning.js")"></script><script>window.onload=function(){e("@Url.Content("~/Content/js/ie6/")")}</script><![endif]-->
+<body class="responsive">
+@Html.Action("Navigator", "Home")
+@RenderBody()
+@Html.Action("FooterHome", "Home")
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AxaFailProof.Models.SocialUser>
+
+@{
+    ViewBag.Title = "Social Media Users";
+}
+<div class="panel-header">
+    <h3>Social Media</h3>
+</div>
+
+<div class="panel-body">
+<input type="button" class="btn-submit panel-button-right" value="Download Excel File" onclick="location.href='@Url.Action("DownloadExl")';" />
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>
+            SocialMedia
+        </th>
+        <th>
+            FullName
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            DateCreated
+        </th>
+        <th></th>
+    </tr>
+     </thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SocialMedia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+</div>
+<div class="clearboth"></div>
+<div class="panel-footer"></div>

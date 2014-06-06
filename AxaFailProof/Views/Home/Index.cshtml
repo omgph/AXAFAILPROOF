@@ -1,0 +1,64 @@
+﻿@model AxaFailProof.Models.AxaViewModel 
+<!-- Section post -->
+<section class="section ">
+  <div class="container">
+    <div class="row-fluid">
+      <div class="row-fluid ">
+        <div class="span4">
+          <div class="inner-content vertical-padding-large"> 
+            <h3>HEALTH FACTS &amp;<br />
+            <h7>FIGURES</h7></h3>
+            @foreach (var item in Model.HealthFacts) {
+                string teaser = "";
+                teaser = System.Text.RegularExpressions.Regex.Replace(item.Body.Replace("&nbsp;", ""), "<.*?>", string.Empty);
+                if (teaser.Length > 250)
+                {
+                    teaser = teaser.Substring(0, 250);
+                }
+                else
+                {
+                    teaser = teaser.ToString();
+                }                
+                
+                <p><a href="@Url.Action("HealthFactsFigures", "Home", new { id = item.StoryID })"><img class="img-center2" src="@Url.Content("~/UserFiles/image_thumb/" + item.Image + "")" /></a></p>
+                <p><h8>@item.Title</h8><br />
+                @teaser<a href="@Url.Action("HealthFactsFigures", "Home", new { id = item.StoryID })"> Read more</a></p>            
+            }
+          </div>
+        </div>
+        <!-- end --> 
+        <!-- start -->
+        <div class="span4">
+          <div class="inner-content  vertical-padding-large"> @Html.Raw(Model.Mushroom2.Body) </div>
+        </div>
+        <!-- end --> 
+        <!-- start -->
+        <div class="span4">
+          <div class="inner-content  vertical-padding-large">
+            <h3>Health Stories of<br/>
+              <h7>Hope and Struggle</h7>
+            </h3>
+            @foreach (var item in Model.FeaturedStory)
+            {
+                string teaser = "";
+                teaser = System.Text.RegularExpressions.Regex.Replace(item.Body.Replace("&nbsp;", ""), "<.*?>", string.Empty);
+                if (teaser.Length > 250)
+                {
+                    teaser = teaser.Substring(0, 250);
+                }
+                else
+                {
+                    teaser = teaser.ToString();
+                }  
+            <p><a href="@Url.Action("Story", "Home", new { id = item.StoryID })"><img src="@Url.Content("~/UserFiles/image_thumb/" + item.Image + "")" class="img-center2"></a></p>
+            <p>
+              <h8>@item.Title</h8>
+              <br>
+              @teaser <a href="@Url.Action("Story", "Home", new { id = item.StoryID })">Read more</a></p>
+            } </div>
+          <!-- end --> 
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

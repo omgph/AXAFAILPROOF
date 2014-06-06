@@ -1,0 +1,16 @@
+﻿<div id="archives-2" class="widget widget_meta widget_archive">
+<h3>Topics</h3>
+<ul>
+    @foreach (var item in Model.Topics) 
+    {
+        if (item.Title == "Statistics")
+        {
+            <li><a href='@Url.Action("Statistics", "Home", new { id = item.TopicID })' title='@item.Title'>@item.Title</a></li>
+        }
+        else
+        {
+            <li><a href='@Url.Action("SearchTopic", "Home", new { id = item.TopicID })' title='@item.Title'>@item.Title</a></li>
+        }
+    }
+</ul>
+</div>

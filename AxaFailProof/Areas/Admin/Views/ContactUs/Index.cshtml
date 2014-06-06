@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AxaFailProof.Models.ContactU>
+
+@{
+    ViewBag.Title = "Contact Us";
+}
+<div class="panel-header">
+    <h3>Contact Us List</h3>
+</div>
+
+<div class="panel-body">
+<input type="button" class="btn-submit panel-button-right" value="Download Excel File" onclick="location.href='@Url.Action("DownloadExl")';" />
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Message
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+            <td align="right" height="25" style="padding-left:5px;" nowrap="nowrap">
+            &nbsp;<a onclick="deleteme('@Url.Action("DeleteConfirmed", "ContactUs", new { id = item.ContactID })')" style="cursor:pointer;"><img src="@Url.Content("~/Areas/Admin/Content/images/delete.png")" width="16" title="Delete" alt="Delete" height="16" align="absmiddle" border="0"/></a> 
+            &nbsp;&nbsp; 
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+</div>
+<div class="clearboth"></div>
+<div class="panel-footer"></div>

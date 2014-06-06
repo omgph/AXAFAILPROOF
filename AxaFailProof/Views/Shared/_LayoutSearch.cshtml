@@ -1,0 +1,43 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="copyright" lang="en" content="2013" />
+<meta name="title" content="@ViewBag.MetaTitle // AXA Philippines - Fail Proof Your Future" property="og:title"/>
+<meta name="description" content="@ViewBag.MetaDescription" property="og:description" />
+<meta name="keywords" content="@ViewBag.MetaKeyWords" />
+<meta content="http://omgph.net/UserFiles/og_images/axa_og_image.png" property="og:image" />
+<title>@ViewBag.MetaTitle // AXA Philippines - Fail Proof Your Future</title>
+
+<!-- CSS -->
+<link rel="stylesheet" href="@Url.Content("~/Content/css/layout.css")" type="text/css" />
+<link rel='stylesheet' id='rs-settings-css'  href='@Url.Content("~/Content/css/settings.css")' type='text/css' media='all' />
+<link rel='stylesheet' id='rs-captions-css'  href='@Url.Content("~/Content/css/captions.css")' type='text/css' media='all' />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/main.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/shortcodes.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/icons.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/flexslider.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/responsive.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/fonts.css")" type="text/css" />
+
+<!-- JS -->
+<link href='http://fonts.googleapis.com/css?family=Montserrat:700,400' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="@Url.Content("~/Content/js/jquery.js")"></script>
+<script type='text/javascript' src='@Url.Content("~/Content/js/jquery.themepunch.revolution.min.js")'></script>
+<script type="text/javascript" src="@Url.Content("~/Content/js/plugins.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Content/js/caroufred.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Content/js/flexslider.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Content/js/isotope.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Content/js/main.js")"></script>
+<!-- Icon -->
+<link rel="shortcut icon" href="@Url.Content("~/Content/images/ico.png")">
+</head>
+<!--[if lte IE 6]><script src="@Url.Content("~/Content/js/ie6/warning.js")"></script><script>window.onload=function(){e("@Url.Content("~/Content/js/ie6/")")}</script><![endif]-->
+<body class="responsive">
+<div id="fb-root"></div>
+@Html.Action("Navigator2", "Home")
+@RenderBody()
+@Html.Action("FooterMain", "Home")
+</body>
+</html>

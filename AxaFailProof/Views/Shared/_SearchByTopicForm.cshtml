@@ -1,0 +1,10 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+@using (Html.BeginForm("SearchTags", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "search-form" }))
+{
+    @Html.ValidationSummary(true)
+    <div>
+        <input type="text" id="SearchTags" name="SearchTags" value="Search by tags…" onFocus="if(this.value=='Search by tags…')this.value='';" onBlur="if(this.value=='')this.value='Search by tags…';" autocomplete="off" />
+        <input type="submit" value="search" class="hidden" />
+    </div>
+}
+

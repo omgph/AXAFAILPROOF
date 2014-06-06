@@ -1,0 +1,62 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml"; 
+}
+<!-- Section post -->
+<section class="section">
+  <div class="container">
+    <div class="row-fluid">
+      <div id="post-2355" class="post post-full-width-alternate clearfix">
+        <div class="post-info-container">
+          <p class="failproof-header4">CONTACT US<br>
+          </p>
+          <p class="failproof-header4"><span class="contact_text1">Feel free to send us an email anytime.</span> </p>
+        </div>
+        <div class="post-info-container">
+          <div class="container">
+            <div class="row-fluid">
+              <div class="stunning_text">
+                <div class="big-title  extra-large-text"></div>
+              </div>
+              <div class="wpcf7" id="wpcf7-f2370-p20-o1">
+              @using (Html.BeginForm("ContactUs", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+              {
+                @Html.ValidationSummary(true)
+                  <div class="comment-form">
+                    <div class="row-fluid">
+                      <div class="span14">
+                        <div class="control-wrap"> <span class="icon"><i class="icon-fixed-user"></i></span>
+                          @Html.TextBoxFor(model => model.ContactUs.Name, new { size = "22", tabindex = "1", placeholder = "Your Name"})
+                          @Html.ValidationMessageFor(model => model.ContactUs.Name, "", new { style = "color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;" })
+                        </div>
+                      </div>
+                      <div class="span14">
+                        <div class="control-wrap"> <span class="icon"><i class="icon-fixed-mail"></i></span>
+                          @Html.TextBoxFor(model => model.ContactUs.Email, new { size = "22", tabindex = "1", placeholder = "Email"})
+                          @Html.ValidationMessageFor(model => model.ContactUs.Email, "", new { style = "color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;" })
+                        </div>
+                      </div>
+                      <div class="span4"></div>
+                    </div>
+                  </div>
+                  <!--/row-->
+                  
+                  <div class="comment-form">
+                    <div class="row-fluid">
+                      <div class="span14">
+                        @Html.TextAreaFor(model => model.ContactUs.Message, new { rows = "10", cols = "58", placeholder = "Your Message" })<br />
+                        @Html.ValidationMessageFor(model => model.ContactUs.Message, "", new { style = "color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;" })
+                      </div>
+                    </div>
+                  </div>
+                  <input name="submit" type="submit" id="submit" class="button" tabindex="5" value="Submit" />
+              }
+              </div>
+              <div class="gap" style="height:50px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

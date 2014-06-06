@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AxaFailProof.Models.Banner>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout3.cshtml";
+    ViewBag.Title = "Banner Home";
+}
+<div class="panel-header">
+    <h3>Banner Footer</h3>
+</div>
+
+<div class="panel-body">
+
+<div><input type="button" class="btn-submit panel-button-right" value="Create New" onclick="location.href='@Url.Action("Create")';" /></div>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>
+            Banner Image
+        </th>
+        <th>
+            DateCreated
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+    var image = "";
+    if (item.Status == true)
+    {
+        image = "~/Areas/Admin/Content/images/accept.png";
+    }
+    else
+    {
+        image = "~/Areas/Admin/Content/images/cross.png";
+    }       
+    <tr>
+        <td>
+            <img src="/Userfiles/images/@item.Image" width="350px;" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+            <td align="right" height="25" style="padding-left:5px;" nowrap="nowrap">
+            &nbsp;<a href="@Url.Action("Edit", "BannerFooter", new { id = item.BannerID })"><img src="@Url.Content("~/Areas/Admin/Content/images/page_edit.png")" title="Edit" alt"Edit" width="16" height="16" align="absmiddle" border="0"/></a> 
+            &nbsp;<a onclick="deleteme('@Url.Action("DeleteConfirmed", "BannerFooter", new { id = item.BannerID })')" style="cursor:pointer;"><img src="@Url.Content("~/Areas/Admin/Content/images/delete.png")" width="16" title="Delete" alt="Delete" height="16" align="absmiddle" border="0"/></a> 
+            &nbsp;<a href="@Url.Action("Status", "BannerFooter", new { id = item.BannerID })"><img src="@Url.Content(@image)" width="16" title="Status" alt="Status" height="16" align="absmiddle" border="0"/></a>
+            &nbsp;&nbsp; 
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+</div>
+<div class="clearboth"></div>
+<div class="panel-footer"></div>

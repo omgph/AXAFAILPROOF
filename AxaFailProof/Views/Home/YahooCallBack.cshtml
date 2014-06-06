@@ -1,0 +1,8 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml"; 
+}
+<script>
+    opener.saveUserDetails("@Model.Profile.profile.guid", "@Model.Profile.profile.nickname", "", "Yahoo");
+    window.close();
+</script>

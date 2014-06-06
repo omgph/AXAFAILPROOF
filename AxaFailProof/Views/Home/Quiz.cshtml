@@ -1,0 +1,292 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<script type="text/javascript">
+    var totalquiz = 0;
+    function question1() {
+        var answer = $('input[name="RadioGroup1"]:radio:checked').val();
+        if (answer > 0) {
+            totalquiz = answer;
+            $("#Quiz_Score").val(totalquiz);
+            $(".quiz-num1").hide();
+            $(".quiz-num2").show();
+            $(".imagequestion1").hide();
+            $(".imagequestion2").show();
+        } else {
+        $("#error1").show();
+        }
+    }
+    function question2() {
+        var answer = $('input[name="RadioGroup2"]:radio:checked').val();
+        if (answer>0) {
+            totalquiz = eval(totalquiz)+eval(answer);
+            $("#Quiz_Score").val(totalquiz);
+            $(".quiz-num2").hide();
+            $(".quiz-num3").show();
+            $(".imagequestion2").hide();
+            $(".imagequestion3").show();
+        } else {
+            $("#error2").show();
+        }
+    }
+    function question3() {
+        var answer = $('input[name="RadioGroup3"]:radio:checked').val();
+        if (answer>0) {
+            totalquiz = eval(totalquiz) + eval(answer);
+            $("#Quiz_Score").val(totalquiz);
+            $(".quiz-num3").hide();
+            $(".quiz-num4").show();
+            $(".imagequestion3").hide();
+            $(".imagequestion4").show();
+        } else {
+            $("#error3").show();
+        }
+    }
+    function question4() {
+        var answer = $('input[name="RadioGroup4"]:radio:checked').val();
+        if (answer>0) {
+            totalquiz = eval(totalquiz) + eval(answer);
+            $("#Quiz_Score").val(totalquiz);
+            $(".quiz-num4").hide();
+            $(".quiz-num5").show();
+            $(".imagequestion4").hide();
+            $(".imagequestion5").show();
+        } else {
+            $("#error4").show();
+        }
+    }
+    function question5() {
+        var answer = $('input[name="RadioGroup5"]:radio:checked').val();
+        if (answer>0) {
+            totalquiz = eval(totalquiz) + eval(answer);
+            $("#Quiz_Score").val(totalquiz);
+            $(".quiz-num5").hide();
+            $(".quiz-num6").show();
+            $(".imagequestion5").hide();
+            $(".imagequestion6").show();
+        } else {
+            $("#error5").show();
+        }
+    }
+    function question6() {
+        var answer = $('input[name="RadioGroup5"]:radio:checked').val();
+        if (answer>0) {
+            totalquiz = eval(totalquiz) + eval(answer);
+            $("#Quiz_Score").val(totalquiz);
+            $("#frmEvent").submit();
+        } else {
+            $("#error6").show();
+        }
+    }
+
+</script> 
+<!-- END REVOLUTION SLIDER -->
+<section class="section">
+  <div class="row-fluid">
+    <div class="takethequiz-header">
+      <p class="takethequiz-text3">Offbeat Death Quiz</p>
+      </p>
+      <p class="takethequiz-text4">Find out how you will die based on your lifestyle </p>
+    </div>
+    <div id="takethequiz-content">
+      @using (Html.BeginForm("Quiz", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmEvent" }))
+      {
+          @Html.HiddenFor(model => model.Quiz.Score)
+      }
+      <div id="quiz-question" class="quiz-num1">
+          1.	How do you handle stress? <br>
+          <span id="spryradio1">
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup1" value="1" id="RadioGroup1_0">
+            a. An intense workout session</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup1" value="2" id="RadioGroup1_1">
+            b. Binge-eating</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup1" value="3" id="RadioGroup1_2">
+            c. A trip to the spa or salon</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup1" value="4" id="RadioGroup1_3">
+            d. Retail therapy</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup1" value="5" id="RadioGroup1_4">
+            e. A good cry</label>
+          <br>
+          <br>
+          <span class="radioRequiredMsg" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold; display:none;" id="error1">Please choose an answer.</span></span>
+          <p class="takethequiz-text5">
+            <input name="submit" type="submit" id="submit" class="button" tabindex="5" value="Continue" onclick="question1();" />
+          </p>
+          <br>
+         <h11>Question 1 of 6</h11>
+      </div>
+        <div id="quiz-question" class="quiz-num2" style="display:none;">
+          2.	What are you most likely to be found doing in a mall? <br>
+          <span id="spryradio1">
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup2" value="1" id="RadioGroup1_0">
+            a. Maxing out your credit card on shoes</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup2" value="2" id="RadioGroup1_1">
+            b. Crowd-surfing at a celebrity's mall tour</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup2" value="3" id="RadioGroup1_2">
+            c. Getting a mani-pedi</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup2" value="4" id="RadioGroup1_3">
+            d. Catching the latest blockbuster</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup2" value="5" id="RadioGroup1_4">
+            e. Strolling through the halls, window shopping</label>
+          <br>
+          <br>
+          <span class="radioRequiredMsg" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold; display:none;" id="error2">Please choose an answer.</span></span>
+          <p class="takethequiz-text5">
+            <input name="submit" type="submit" id="submit" class="button" tabindex="5" value="Continue" onclick="question2();" />
+          </p>
+          <br>
+         <h11>Question 2 of 6</h11>      
+      </div>
+      <div id="quiz-question" class="quiz-num3" style="display:none;">
+          3.	Where would you most probably be on a Saturday night? <br>
+          <span id="spryradio1">
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup3" value="1" id="RadioGroup1_0">
+            a. Passed out in front of the TV</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup3" value="2" id="RadioGroup1_1">
+            b. Passed out at a bar</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup3" value="3" id="RadioGroup1_2">
+            c. Having cocktails with the girls</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup3" value="4" id="RadioGroup1_3">
+            d. At a poetry reading</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup3" value="5" id="RadioGroup1_4">
+            e. Online</label>
+          <br>
+          <br>
+          <span class="radioRequiredMsg" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold; display:none;" id="error3">Please choose an answer.</span></span>
+          <p class="takethequiz-text5">
+            <input name="submit" type="submit" id="submit" class="button" tabindex="5" value="Continue" onclick="question3();" />
+          </p>
+          <br>
+         <h11>Question 3 of 6</h11>      
+      </div>
+      <div id="quiz-question" class="quiz-num4" style="display:none;">
+          4.	What does your dream vacation sound like? <br>
+          <span id="spryradio1">
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup4" value="1" id="RadioGroup1_0">
+            a. Traversing the Grand Canyon</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup4" value="2" id="RadioGroup1_1">
+            b. Sunbathing in the Maldives</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup4" value="3" id="RadioGroup1_2">
+            c. Petting lions in Cape Town</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup4" value="4" id="RadioGroup1_3">
+            d. Meditating in Tibet</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup4" value="5" id="RadioGroup1_4">
+            e. Strutting along the streets of Paris</label>
+          <br>
+          <br>
+          <span class="radioRequiredMsg" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold; display:none;" id="error4">Please choose an answer.</span></span>
+          <p class="takethequiz-text5">
+            <input name="submit" type="submit" id="submit" class="button" tabindex="5" value="Continue" onclick="question4();" />
+          </p>
+          <br>
+         <h11>Question 4 of 6</h11>      
+      </div>
+      <div id="quiz-question" class="quiz-num5" style="display:none;">
+          5.	What reality TV show would you most likely join? <br>
+          <span id="spryradio1">
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup5" value="1" id="RadioGroup1_0">
+            a. The Bachelor</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup5" value="2" id="RadioGroup1_1">
+            b. The Amazing Race</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup5" value="3" id="RadioGroup1_2">
+            c. The Apprentice</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup5" value="4" id="RadioGroup1_3">
+            d. Top Chef</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup5" value="5" id="RadioGroup1_4">
+            e. The Voice</label>
+          <br>
+          <br>
+          <span class="radioRequiredMsg" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold; display:none;" id="error5">Please choose an answer.</span></span>
+          <p class="takethequiz-text5">
+            <input name="submit" type="submit" id="submit" class="button" tabindex="5" value="Continue" onclick="question5();" />
+          </p>
+          <br>
+         <h11>Question 5 of 6</h11>      
+      </div>
+      <div id="quiz-question" class="quiz-num6" style="display:none;">
+          6.	What mutant power would you most want to possess? <br>
+          <span id="spryradio1">
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup6" value="1" id="RadioGroup1_0">
+            a. The ability to control the weather</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup6" value="2" id="RadioGroup1_1">
+            b. The ability to create fire</label>          
+            <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup6" value="3" id="RadioGroup1_2">
+            c. The ability to read minds and control thoughts</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup6" value="4" id="RadioGroup1_3">
+            d. The ability to heal yourself (but having adamantium run through your veins instead of blood)</label>
+          <br>
+          <label class="takethequiz-text5">
+            <input type="radio" name="RadioGroup6" value="5" id="RadioGroup1_4">
+            e. Having the ability to suck the energy out of everyone you touch</label>
+          <br>
+          <br>
+          <span class="radioRequiredMsg" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold; display:none;" id="error6">Please choose an answer.</span></span>
+          <p class="takethequiz-text5">
+            <input name="submit" type="submit" id="submit" class="button" tabindex="5" value="Continue" onclick="question6();" />
+          </p>
+          <br>
+         <h11>Question 6 of 6</h11>      
+      </div>
+      <div id="quiz-img" class="imagequestion1">@Html.Raw(Model.Question1.Body)</div>
+      <div id="quiz-img" class="imagequestion2" style="display:none;">@Html.Raw(Model.Question2.Body)</div>
+      <div id="quiz-img" class="imagequestion3" style="display:none;">@Html.Raw(Model.Question3.Body)</div>
+      <div id="quiz-img" class="imagequestion4" style="display:none;">@Html.Raw(Model.Question4.Body)</div>
+      <div id="quiz-img" class="imagequestion5" style="display:none;">@Html.Raw(Model.Question5.Body)</div>
+      <div id="quiz-img" class="imagequestion6" style="display:none;">@Html.Raw(Model.Question6.Body)</div>
+    </div>
+  </div>
+</section>
+

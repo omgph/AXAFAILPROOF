@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<section id="titlebar" class="titlebar">
+  <div class="container">
+    <div class="row-fluid">
+      <h1 class="">No record(s) found!</h1>
+    </div>
+  </div>
+</section>
+
+<!-- section post -->
+<section class="section">
+	<div class="container">
+   	  <div class="row-fluid">
+   		<div class="portfolio-tabs clearfix"> </div>
+            <div class="portfolio">
+            	<div class="container">
+					<div class="row-fluid">
+						<div class="content span9">
+        					<h11>No record(s) found!</h11>
+      				    </div>
+     				<div class="sidebar span3">
+        				<div class="inner-content">
+         					<div id="search-2" class="widget widget_meta widget_search">
+            				@Html.Action("SearchByTopicForm", "Home")
+              				</div>
+            			</div>
+          				@Html.Action("ArchiveList", "Home")
+                        @Html.Action("ResentPosts", "Home")
+     				</div>
+ 		 		</div>
+			</div>
+   		</div>
+   	  </div>
+	</div>
+</section>

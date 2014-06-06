@@ -1,0 +1,170 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="copyright" lang="en" content="2013" />
+<meta name="title" content="@ViewBag.MetaTitle // AXA Philippines - Fail Proof Your Future" property="og:title"/>
+<meta name="description" content="@ViewBag.MetaDescription" property="og:description" />
+<meta name="keywords" content="@ViewBag.MetaKeyWords" />
+<meta content="@ViewBag.OgImage" property="og:image" />
+<title>@ViewBag.MetaTitle // AXA Philippines - Fail Proof Your Future</title>
+
+<!-- CSS -->
+<link rel="stylesheet" href="@Url.Content("~/Content/css/layout.css")" type="text/css" />
+<link rel='stylesheet' id='rs-settings-css'  href='@Url.Content("~/Content/css/settings.css")' type='text/css' media='all' />
+<link rel='stylesheet' id='rs-captions-css'  href='@Url.Content("~/Content/css/captions.css")' type='text/css' media='all' />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/main.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/shortcodes.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/icons.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/flexslider.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/responsive.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/fonts.css")" type="text/css" />
+
+<!-- JS -->
+<link href='http://fonts.googleapis.com/css?family=Montserrat:700,400' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="@Url.Content("~/Content/js/jquery.js")"></script>
+<script type='text/javascript' src='@Url.Content("~/Content/js/jquery.themepunch.revolution.min.js")'></script>
+<script type="text/javascript" src="@Url.Content("~/Content/js/plugins.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Content/js/caroufred.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Content/js/flexslider.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Content/js/isotope.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Content/js/main.js")"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/3.2.0pr2/build/yui/yui-min.js"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/js/yui-login.js")"></script>
+
+<!-- Icon -->
+<link rel="shortcut icon" href="@Url.Content("~/Content/images/ico.png")">
+<style>
+    .st_twitter_custom{
+        background: url("@Url.Content("~/Content/images/btn-home-twitter.png")") no-repeat scroll left top transparent;
+	    height:29px;
+	    width:29px;
+		margin-left:10px;
+        cursor:pointer;
+    } 
+    .st_facebook_custom{
+        background: url("@Url.Content("~/Content/images/btn-home-fb.png")") no-repeat scroll left top transparent;
+	    height:29px;
+	    width:29px;
+		margin-left:10px;
+        cursor:pointer;
+    } 
+
+    #pagerlist {}
+	#pagerlist ul {}
+	.pagination a {}
+	#pagerlist ul li {
+		list-style:none;	
+		width: 35px;
+		height: 35px;
+		text-align: center;
+		line-height: 35px;
+		background: transparent;
+		box-shadow: 0 1px 1px 0 rgba(180,180,180,0.1);
+		color: #999;
+		border: 1px solid #eee;
+		margin-left: -1px;
+		background: transparent;
+		overflow: hidden;
+		float: left;	
+	}
+	#pagerlist ul li:hover {
+		background-color:#eee;
+		color: #fff;
+		border-color: #eee;
+	}
+	#pagerlist ul li a {
+		display: block;
+		color: #444;
+	}
+	#pagerlist ul li:first-child {
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+	}
+	#pagerlist ul li:last-child {
+		border-top-right-radius: 6px;
+		border-bottom-right-radius: 6px;
+	}
+	#pagerlist ul li.active {
+		background-color: #f65152;
+		color: #fff;
+		border-color: #f65152;		
+	}
+	#pagerlist ul li.active a {
+		color: #fff;
+	}
+	
+	#pagerlist ul li.active:hover { 
+		background-color: #fff;
+		color: #fff;
+		border-color: #f65152;	
+	}
+	#pagerlist ul li.active a:hover { 
+		color: #444;
+	}
+</style>
+<script>
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+
+    $(document).ready(function(){
+	  $("button").on("click", function(){
+		if($(this).text()=="X")
+		{
+			$(this).text("Show");
+		} else {
+			$(this).text("X");
+		}
+		$("#stripwithbtns").toggle(); 
+		return false;
+	  });
+	});
+</script>
+</head>
+<!--[if lte IE 6]><script src="@Url.Content("~/Content/js/ie6/warning.js")"></script><script>window.onload=function(){e("@Url.Content("~/Content/js/ie6/")")}</script><![endif]-->
+<!--[if lte IE 7]><script src="@Url.Content("~/Content/js/ie6/warning.js")"></script><script>window.onload=function(){e("@Url.Content("~/Content/js/ie6/")")}</script><![endif]-->
+<!--[if lte IE 8]><script src="@Url.Content("~/Content/js/ie6/warning.js")"></script><script>window.onload=function(){e("@Url.Content("~/Content/js/ie6/")")}</script><![endif]-->
+<body class="responsive">
+<a name="screen1"></a><a name="screen2"></a>
+<div id="fb-root"></div>
+@Html.Action("Navigator", "Home")
+@RenderBody()
+@Html.Action("FooterMain", "Home")
+<script>
+    window.fbAsyncInit = function () {
+        // init the FB JS SDK
+        FB.init({
+            appId: '452732278159538',                        // App ID from the app dashboard
+            status: true,                                 // Check Facebook Login status
+            xfbml: true                                  // Look for social plugins on the page
+        });
+
+        // Additional initialization code such as adding Event Listeners goes here
+    };
+
+    // Load the SDK asynchronously
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    } (document, 'script', 'facebook-jssdk'));
+</script>
+</body>
+</html>

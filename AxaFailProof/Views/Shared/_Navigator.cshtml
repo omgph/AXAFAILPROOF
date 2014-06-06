@@ -1,0 +1,201 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+<!-- mobile menu Starts Here-->
+<div id="mobile_navigation"><!-- mobile_navigation-->
+  <ul id="mobile_menu" class="mobile_menu"><!-- mobile_menu-->
+    <!-- start li-->
+	<li class="menu-item"><a href="/">Home</a></li>
+	<!-- end li-->
+	<!-- start li-->
+    <li class="menu-item"><a href="#">Fail Proof Your Health</a>
+        <ul class="sub-menu">
+            <li>@Html.ActionLink("Why Focus on Health?", "FailProofYourHealth", new { id = 7})</li>
+            <li>@Html.ActionLink("What’s Your Health Risk Score?", "HealthRiskScore")</li>
+            <li>@Html.ActionLink("Health Facts & Figures", "HealthFactsFigures", new { id = 11 })</li>
+            <li><a href="#">AXA Products</a>
+                <ul class="sub-menu">
+                    <li>@Html.ActionLink("Health eXentials", "FailProofYourHealth", new { id = 8 })</li>
+                    <li>@Html.ActionLink("Health Max", "FailProofYourHealth", new { id = 9 })</li>
+                </ul>
+            </li>
+            <li>@Html.ActionLink("Take The Offbeat Death Quiz", "Quiz")</li>
+	    </ul>
+    </li>
+	<!-- end li-->
+	<!-- start li-->
+    <li class="menu-item">@Html.ActionLink("What is Fail Proof?", "WhatIsFailProof", new { id = 3 })</li>
+	<!-- end li-->
+	<!-- start li-->
+    <li class="menu-item"><a href="#">Stories</a>
+    	<ul class="sub-menu">
+        	<li>@Html.ActionLink("Archive", "Archive")</li>
+        	<li>@Html.ActionLink("Share your Story", "SubmitStoryLogin")</li>
+        	<li>@Html.ActionLink("Search by Topic", "Search")</li>
+		</ul>
+    </li>
+	<!-- end li-->
+	<!-- start li-->
+    <li class="menu-item"><a href="http://axa.com.ph/HowCanWeServe/BranchLocations.aspx?Page=HowWeCanServe&Style=Branch" target="_blank">Contact Us</a></li>
+	<!-- end li-->
+  </ul>
+</div>
+
+<!-- End Mobile Navigation -->
+<div id="header_space"></div><!-- header_space -->
+<header id="header"><!-- header -->
+  <section id="main_header_container"><!-- main_header_container -->
+    <div id="main_navigation"><!-- main_navigation -->
+      <div class="container"><!-- container -->
+        <div class="row-fluid"><!-- row-fluid -->
+          <div class="row-fluid"><!-- row-fluid -->
+            <div class="span12"> <!-- span12 -->
+              <div class="logo-container"> <a href="http://www.axa.com.ph" target="_blank" id="logo" class="clearfix"><img src="@Url.Content("~/Content/images/logo.png")"/></a> </div><!-- logo -->
+              <div id="toggle-menu"> <a class="toggle-menu" href="#"><i class="icon-list2"></i></a><!-- toggle-menu -->
+                <div class="clear"></div><!-- clear -->
+              </div>
+              <ul id="main_menu" class="main_menu"><!-- main_menu -->
+               <li class="menu-item @ViewBag.Hselected"><a href="/">Home</a></li>
+				<!-- end li-->
+				<!-- start li-->
+                <li class="menu-item @ViewBag.Fselected"><a href="#">Fail Proof your Health</a>
+                	 <ul class="sub-menu">
+        				<li>@Html.ActionLink("Why Focus on Health?", "FailProofYourHealth", new { id = 7})</li>
+                        <li>@Html.ActionLink("What’s Your Health Risk Score?", "HealthRiskScore")</li>
+                        <li>@Html.ActionLink("Health Facts & Figures", "HealthFactsFigures", new { id = 11 })</li>
+                        <li><a href="#">AXA Products</a>
+                        	<ul class="sub-menu">
+                                <li>@Html.ActionLink("Health eXentials", "FailProofYourHealth", new { id = 8 })</li>
+                                <li>@Html.ActionLink("Health Max", "FailProofYourHealth", new { id = 9 })</li>
+                            </ul>
+                        </li>
+        				<li>@Html.ActionLink("Take The Offbeat Death Quiz", "Quiz")</li>
+      				</ul>
+                </li>
+				<!-- end li-->
+				<!-- start li-->
+                <li class="menu-item @ViewBag.Wselected">@Html.ActionLink("What is Fail Proof?", "WhatIsFailProof", new { id = 3 })</li>
+				<!-- end li-->
+				<!-- start li-->
+                <li class="menu-item @ViewBag.Sselected"><a href="#">Stories</a>
+                	<ul class="sub-menu">
+        				<li>@Html.ActionLink("Archive", "Archive")</li>
+        				<li>@Html.ActionLink("Share your Story", "SubmitStoryLogin")</li>
+        				<li>@Html.ActionLink("Search by Topic", "Search")<a href="search_by_topic.html"></a></li>
+      				</ul>
+                </li>
+				<!-- end li-->
+				<!-- start li-->
+                <li class="menu-item"><a href="http://axa.com.ph/HowCanWeServe/BranchLocations.aspx?Page=HowWeCanServe&Style=Branch" target="_blank">Contact Us</a></li>
+				<!-- end li-->
+              </ul>
+            </div><!-- end -->
+          </div><!-- end -->
+        </div><!-- end -->
+      </div><!-- end -->
+    </div><!-- end -->
+  </section><!-- end -->
+
+</header><!-- end header -->
+<section id="main_header_container">
+  <div id="socialmedia-content">
+		<div class="container">
+        	<div class="row-fluid">
+                <form name="googlesearch" id="googlesearch" action="/GoogleSearch">
+           		    <input type="text" name="q" id="q"  tabindex="1" value="Search" aria-required='true' class='seachbar-box'/>
+                    <input type="submit" name="googlesearch" id="googlesearch" style="display:none;" />
+                </form>
+          		<a href="http://www.youtube.com/user/AXAPHofficial" target="_blank"><img src="@Url.Content("~/Content/images/btn-home-youtube.png")" class="socialmedia-alignment"></a>
+            	<a href="https://twitter.com/AXA_PH" target="_blank"><img src="@Url.Content("~/Content/images/btn-home-twitter.png")" class="socialmedia-alignment"></a>
+            	<a href="https://www.facebook.com/FailProofYourFuture" target="_blank"><img src="@Url.Content("~/Content/images/btn-home-fb.png")" class="socialmedia-alignment"></a>
+          		<p><span class="socialmedia-alignment">FOLLOW US</span></p>
+          	</div>
+		</div>
+	</div>
+</section>
+
+<div id="rev_slider_3_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container">
+  <div id="rev_slider_3_1" class="rev_slider fullwidthabanner"  >
+    <ul>
+        @foreach (var item in Model.Banner)
+        { 
+          <li data-transition="fade" data-slotamount="7" data-masterspeed="300" > <img src="@Url.Content("~/Content/images/slide-bg0.jpg")"  alt="slide-bg1"  data-fullwidthcentering="on">
+            <div class="tp-caption fade" data-x="0" data-y="0" data-speed="500" data-start="500" data-easing="easeOutExpo"><img src="@Url.Content("~/UserFiles/images/" + item.Image + "")" alt="Banner"> </div>
+            @{
+                if (item.Label != "") { 
+                    <div class="tp-caption bg-title sfb" data-x="0" data-y="80" data-speed="400" data-start="800" data-easing="easeOutExpo">@Html.Raw(item.Label)</div>
+                }
+                if (item.Button != null)
+                { 
+                    <div class="tp-caption fade bg-buttons"data-x="-20" data-y="160" data-speed="250" data-start="1200" data-easing="easeOutExpo" ><a href='@item.Link' class='button'>@item.Button</a></div>
+                }
+            }
+          </li>
+        }<!-- end loop -->
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">
+    var revapi3;
+    jQuery(document).ready(function () {
+
+        if (jQuery.fn.cssOriginal != undefined)
+            jQuery.fn.css = jQuery.fn.cssOriginal;
+
+        if (jQuery('#rev_slider_3_1').revolution == undefined)
+            revslider_showDoubleJqueryError('#rev_slider_3_1');
+        else {
+            revapi3 = jQuery('#rev_slider_3_1').show().revolution(
+					{
+					    delay: 9000,
+					    startwidth: 1140,
+					    startheight: 400,
+					    hideThumbs: 200,
+
+					    thumbWidth: 100,
+					    thumbHeight: 50,
+					    thumbAmount: 3,
+
+					    navigationType: "bullet",
+					    navigationArrows: "solo",
+					    navigationStyle: "round",
+
+					    touchenabled: "on",
+					    onHoverStop: "on",
+
+					    navigationHAlign: "center",
+					    navigationVAlign: "bottom",
+					    navigationHOffset: 0,
+					    navigationVOffset: 30,
+
+					    soloArrowLeftHalign: "left",
+					    soloArrowLeftValign: "center",
+					    soloArrowLeftHOffset: 10,
+					    soloArrowLeftVOffset: 0,
+
+					    soloArrowRightHalign: "right",
+					    soloArrowRightValign: "center",
+					    soloArrowRightHOffset: 10,
+					    soloArrowRightVOffset: 0,
+
+					    shadow: 0,
+					    fullWidth: "on",
+					    fullScreen: "off",
+
+					    stopLoop: "off",
+					    stopAfterLoops: -1,
+					    stopAtSlide: -1,
+
+					    shuffle: "off",
+
+					    hideSliderAtLimit: 0,
+					    hideCaptionAtLimit: 0,
+					    hideAllCaptionAtLilmit: 0,
+					    startWithSlide: 0,
+					    videoJsPath: "revslider/videojs/",
+					    fullScreenOffsetContainer: ""
+					});
+
+            revapi3.revnext(function () { alert(0) });
+        }
+    }); //ready
+</script> 
+<!-- END REVOLUTION SLIDER --> 

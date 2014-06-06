@@ -1,0 +1,244 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    ReCaptcha.PublicKey = @"6Ldg9N0SAAAAAIikWed-vcJuNc8-EZ7NZqeazjDW";
+}
+<script src="@Url.Content("~/Scripts/jquery.maskedinput.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    function checkuncheck() {
+        if ($("#checkbox1Terms").is(':checked')) {
+            $("#EventsRegistered_Terms").val(true);
+        } else {
+            $("#EventsRegistered_Terms").val(false);
+        }
+    }
+
+    function checkemail(email) {
+        filter = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (filter.test(email)) {
+            return true;
+        }
+        else
+        { return false; }    
+    }
+
+    function isValidUSPhoneFormat(elementValue) {
+        var phoneNumberPattern = /^[(]{0,1}[0-9]{4}[)]{0,1}[-\s.]{0,1}[0-9]{7}$/;
+        if (phoneNumberPattern.test(elementValue) == false) {
+            var phoneNumberPattern = /^(\()?\d{3}(\))?(.|\s)?\d{3}(.|\s)\d{4}$/;
+            return phoneNumberPattern.test(elementValue);
+        }
+        return phoneNumberPattern.test(elementValue);
+    }
+
+    function checkdate(input) {
+        var validformat = /^\d{4}\-\d{2}\-\d{2}$/ //Basic check for format validity
+        var returnval = false
+        if (!validformat.test(input))
+            $("#EventsRegistered_BirthDate_Error").html("Invalid Date Format. Please correct and submit again.");
+        else { //Detailed check for valid date ranges
+            var yearfield = input.split("-")[0]
+            var monthfield = input.split("-")[1]
+            var dayfield = input.split("-")[2]
+            var dayobj = new Date(yearfield, monthfield - 1, dayfield)
+            if ((dayobj.getMonth() + 1 != monthfield) || (dayobj.getDate() != dayfield) || (dayobj.getFullYear() != yearfield))
+                $("#EventsRegistered_BirthDate_Error").html("Invalid Year, Month, or Day, range detected. Please correct and submit again.");
+            else
+                returnval = true
+        }
+        if (returnval == false) select()
+        return returnval
+    }
+
+    function validateForm() {
+        var firstname = $("#EventsRegistered_FirstName").val();
+        var locationcity = $("#EventsRegistered_LocationCity").val();
+        var lastname = $("#EventsRegistered_LastName").val();
+        var contact = $("#EventsRegistered_ContactNumber").val();
+        var email = $("#EventsRegistered_Email").val();
+        var bday = $("#EventsRegistered_BirthDate").val();
+        var card = $('input[name="EventsRegistered.CardHolder"]:radio:checked').val();
+        var terms = $("#checkbox1Terms").is(':checked');
+
+        if (!firstname) {
+            $("#EventsRegistered_FirstName_Error").html("Please enter your first name.");
+        } else {
+            $("#EventsRegistered_FirstName_Error").html("");
+        }
+        if (!locationcity) {
+            $("#EventsRegistered_LocationCity_Error").html("Please enter your location or city.");
+        } else {
+            $("#EventsRegistered_LocationCity_Error").html("");
+        }
+        if (!lastname) {
+            $("#EventsRegistered_LastName_Error").html("Please enter your last name.");
+        } else {
+            $("#EventsRegistered_LastName_Error").html("");
+        }
+        if (!contact) {
+            $("#EventsRegistered_ContactNumber_Error").html("Please enter your contact number.");
+        } else {
+            $("#EventsRegistered_ContactNumber_Error").html("");
+        }
+        if (!email) {
+            $("#EventsRegistered_Email_Error").html("Please enter your email address.");
+        } else {
+            $("#EventsRegistered_Email_Error").html("");
+        }
+        if (!bday) {
+            $("#EventsRegistered_BirthDate_Error").html("Please enter your birth date.");
+        } else {
+            $("#EventsRegistered_BirthDate_Error").html("");
+        }
+        if (!card) {
+            $("#EventsRegistered_CardHolder_Error").html("Please select card holder.");
+        } else {
+            $("#EventsRegistered_CardHolder_Error").html("");
+        }
+        if (!terms) {
+            $("#EventsRegistered_checkbox1Terms_Error").html("Please check terms and conditions.");
+        } else {
+            $("#EventsRegistered_checkbox1Terms_Error").html("");
+        }
+        if (checkemail(email) == false) {
+            $("#EventsRegistered_Email_Error").html("Please enter a valid email address format.");
+            email = null;
+        } else {
+            $("#EventsRegistered_Email_Error").html("");
+        }
+        if (isValidUSPhoneFormat(contact) == false) {
+            $("#EventsRegistered_ContactNumber_Error").html("Please enter valid contact number.");
+        } else {
+            $("#EventsRegistered_ContactNumber_Error").html("");
+        }
+        if (checkdate(bday) == false) {
+            bday = null;
+        }
+        if (firstname && locationcity && lastname && contact && email && bday && card && terms) {
+            $("#frmEvent").submit();
+        }
+    }
+
+    jQuery(function ($) {
+        $("#EventsRegistered_ContactNumber").mask("9999-9999999");
+        $("#EventsRegistered_BirthDate").mask("9999-99-99");
+    });
+</script> 
+
+
+<!-- END REVOLUTION SLIDER -->
+<section class="section">
+  <div class="container">
+    <div class="row-fluid">
+      <div class="inner-content portfolio-items pocketevent active first-row span12">
+        <div class="post-info-container">
+          <p class="failproof-header4">Register for an Event</p>
+        </div>
+        <div class="post-info-container">
+          <div class="row-fluid">
+            <div class="stunning_text">
+              <div class="big-title  extra-large-text"></div>
+            </div>
+            <div class="wpcf7" id="wpcf7-f2370-p20-o1">
+                <div class="comment-form">
+                    @using (Html.BeginForm("RegisterEventStep3", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id="frmEvent" }))
+                    {
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.EventsRegistered.RegEventID)
+                        @Html.HiddenFor(model => model.EventsRegistered.DateCreated)
+                        @Html.HiddenFor(model => model.EventsRegistered.Status)
+                        @Html.HiddenFor(model => model.EventsRegistered.LocationID)
+                        @Html.HiddenFor(model => model.EventsRegistered.Terms)
+                      <div class="row-fluid">
+                        <div class="span4">
+                          <div class="control-wrap"> <span class="icon"><i class="icon-fixed-user"></i></span>
+                            @Html.TextBoxFor(model => model.EventsRegistered.FirstName, new { placeholder = "First Name" })
+                            <span id="EventsRegistered_FirstName_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="control-wrap"> <span class="icon"><i class="icon-fixed-user"></i></span>
+                            @Html.TextBoxFor(model => model.EventsRegistered.LastName, new { placeholder = "Last Name" })
+                            <span id="EventsRegistered_LastName_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="control-wrap"> <span class="icon"><i class="icon-fixed-world"></i></span>
+                            @Html.TextBoxFor(model => model.EventsRegistered.LocationCity, new { placeholder = "Location or City" })
+                            <span id="EventsRegistered_LocationCity_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="control-wrap"> <span class="icon"><i class="icon-fixed-phone"></i></span>
+                            @Html.TextBoxFor(model => model.EventsRegistered.ContactNumber, new { placeholder = "XXXX-XXXXXXX" })
+                            <span id="EventsRegistered_ContactNumber_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="control-wrap"> <span class="icon"><i class="icon-fixed-mail"></i></span>
+                            @Html.TextBoxFor(model => model.EventsRegistered.Email, new { placeholder = "Email Address" })
+                            <span id="EventsRegistered_Email_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                          </div>
+                        </div>
+                        <div class="span4">
+                          <div class="control-wrap"> <span class="icon"><i class="icon-fixed-user"></i></span>
+                            <input data-val="true" data-val-required="The BirthDate field is required." id="EventsRegistered_BirthDate" name="EventsRegistered.BirthDate" placeholder="yyyy-mm-dd" type="text" value="" />
+                            <span id="EventsRegistered_BirthDate_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <!--/row-->
+                      
+                      <div class="post-info-container">
+                        <table width="429" border="0" cellpadding="0" cellspacing="0" class="joinapocketevent_text1">
+                          <tr>
+                            <td width="429" height="51" class="joinapocketevent_text1">Are you a Metrobank Card Holder?</td>
+                          </tr>
+                          <tr>
+                            <td height="67"><span id="spryradio1">
+                              <label>
+                                @Html.RadioButtonFor(model => model.EventsRegistered.CardHolder, "true")
+                                Yes</label>
+                              <br>
+                              <label>
+                                @Html.RadioButtonFor(model => model.EventsRegistered.CardHolder, "false")
+                                No</label><br />
+                                <span id="EventsRegistered_CardHolder_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                              </td>
+                          </tr>
+                          <tr>
+                            <td height="25" class="joinapocketevent_text3"><span id="sprycheckbox1">
+                                <input type="checkbox" name="checkbox1Terms" id="checkbox1Terms" onchange="checkuncheck()">
+                               </span><span class="joinapocketevent_text3">I agree to the site's <span style="cursor:pointer;"><u>Terms and Conditions</u></span></span><br />
+                                <span id="EventsRegistered_checkbox1Terms_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                                </td>
+                          </tr>
+                          <tr>
+                            <td height="140">@ReCaptcha.GetHtml(theme: "clean")
+                            <span id="EventsRegistered_captcha_Error" style="color:Red; font-family:Helvetica,Arial, sans-serif; font-size:12px; font-weight:bold;"></span>
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    }
+                  <div class="post-info-container">
+                    <table width="429" border="0" cellpadding="0" cellspacing="0" class="joinapocketevent_text1">
+                        <tr>
+                        <td height="45"><input name="submit" type="submit" id="submit" class="button.blue img" tabindex="5" value="Submit" onclick="validateForm();" /></td>
+                        </tr>
+                    </table>                    
+                  </div>
+                </div>
+            </div>
+            <div class="gap" style="height:50px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+    if (document.location.hash == "#c") {
+        $("#EventsRegistered_captcha_Error").html("Invalid Captcha. Please try again.");
+    }
+</script>

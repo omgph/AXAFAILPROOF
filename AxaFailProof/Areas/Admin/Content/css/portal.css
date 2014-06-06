@@ -1,0 +1,101 @@
+#columns .column p{
+	background:url(../images/cog-small.png) 2px -1px no-repeat;
+	padding-left: 20px;
+	margin:0 0 10px 0;
+	border: 1px solid #ccc;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color:#B4B4B4;
+	font-size:10px;
+	color:#FFF;
+}
+
+#columns .plugs p{
+	font-size:16px;
+	background:url(../images/plugin_edit.png) no-repeat;
+	border:none;
+	margin:0;
+}
+
+#columns .cols, #columns .nav2, #columns .header, #columns .users, #columns .top, #columns .bottom, #columns .footer, #columns .footer2, #columns .content_top, #columns .content_bottom{
+	margin: 5px 0 5px 0;
+	min-height: 50px;
+	clear:both;
+	
+}
+
+#columns .left, #columns .right, #columns .content{
+	margin: 5px 0 5px 0;
+	min-height: 100px;
+}
+
+#columns .right{
+	margin-left:5px;
+}
+#columns .left{
+	margin-right:5px;
+}
+
+
+/* all columns */
+#columns .plugs div, #columns .cols div, #columns .left div, #columns .right div, #columns .content div{
+	background: url(../images/plugin.png) 5px 5px no-repeat;
+	padding-left:30px;
+	border: 1px solid #ccc;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	margin: 5px 8px;
+	background-color:#DE4319;
+}
+
+.block, .draghandle{
+	cursor: move;
+	color:#FFF;
+}
+
+#columns .plugs div{
+	background: url(../images/plugin_disabled.png) 5px 5px no-repeat #390;	
+}
+
+#columns div div h1{
+	font-size: 10px;
+	padding: 0 5px;
+}
+
+#columns .plugs, #columns .cols, #columns .left, #columns .right, #columns .content{
+	border: 1px solid #ccc;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+}
+
+#columns .target {
+	padding: 3px;
+	border: 2px dashed #ccc;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#columns .plugs{
+background-color:#333333; color:#fff; min-height:720px;
+	margin: 5px 5px 5px 0px;
+	width: 18.3%;
+	float:left;
+}
+
+#columns .plugs div h1{
+	color: #000;
+}
+#columns .plugs p{
+	margin:5px;
+	color: #000;
+}
+
+.canvas_title{
+	margin:25px 0 20px 5px;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	
+	}
+.canvas_title h3{
+	margin:0;
+}

@@ -1,0 +1,45 @@
+﻿@model AxaFailProof.Models.AxaViewModel
+<button class="toggle-btn">X</button>
+<section id="stripwithbtns">
+  <div class="container"><!-- container -->
+    <div class="row-fluid"><!-- row-fluid -->
+      <div class="row-fluid"><!-- row-fluid --> 
+      @Html.Raw(Model.Mushroom3.Body)
+      </div><!-- end -->
+    </div><!-- end -->
+  </div><!-- end -->
+</section><!-- end -->
+<!-- footer -->
+<footer id="footer"><!-- footer -->
+  <div class="container"><!-- container -->
+    <div class="row-fluid"><!-- row-fluid -->
+    <div id="recent-posts-3" class="widget widget_meta widget_recent_entries span13">
+        @foreach (var item in Model.FotterBanner)
+        { 
+        	<a href="http://www.axaion.com.ph" target="_blank" style="text-decoration:none;"><img src="@Url.Content("~/UserFiles/images/" + item.Image)" /></a>
+        }
+    </div>
+      
+      <div id="nav_menu-2" class="widget widget_meta widget_twitter span3">
+        <p><h8>#itcanhappentoyou, @@AXA_PH, #AXAhealth</h8></p><!-- title -->
+        <div class="recent-tweets">
+            <!-- twitter widget -->
+            <a class="twitter-timeline"  href="https://twitter.com/AXA_Philippines"  data-widget-id="422917315001208832">Tweets by @@AXA_Philippines</a>
+            <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } } (document, "script", "twitter-wjs");</script>
+            <!-- end twitter widget -->
+        </div>
+      </div>
+	  <!-- end -->
+    </div><!-- end -->
+  </div><!-- end -->
+</footer><!-- end -->
+@Html.Action("CopyRight", "Home")
+<script type="text/javascript">
+    $(window).scroll(function () {
+        if ($(this).scrollTop()) {
+            $('#bluestrip_floating').fadeIn();
+        } else {
+            $('#bluestrip_floating').fadeOut();
+        }
+    });
+</script>
